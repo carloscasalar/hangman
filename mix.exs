@@ -19,10 +19,14 @@ defmodule Hangman.MixProject do
   end
 
   # Run "mix help deps" to learn about dependencies.
+  # Write "mix deps.get" to retrieve dependencies
   defp deps do
     [
       # {:dep_from_hexpm, "~> 0.3.0"},
-      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"}
+      # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
+      # { :fetcher,  git: "https://repo.acme.com/fetcher", tag: "1.7" },
+      # { :pusher,   github: "pragdave/pusher" },
+      { :dictionary, path: "../dictionary" },
     ]
   end
 end
