@@ -2,8 +2,9 @@ defmodule Hangman.Game do
 
   defstruct(
     turns_left: 7,
-    game_sate: :initializing,
+    game_state: :initializing,
     letters: [],
+    used: MapSet.new(),
   )
 
   def init_game() do
@@ -15,6 +16,19 @@ defmodule Hangman.Game do
 
   def make_move(game = %{game_state: sate}, _guess) when sate in [:won, :lost] do
     {game, tally(game)}
+  end
+
+  def make_move(game, guess) do
+    game = accept_move(game, guess, MapSet.member?(game.used, guess))
+    {game, tally(game)}
+  end
+
+  def accept_move(game, guess, _already_guessed = true) do
+    Map.put(game, :game_state, :already_used)
+  end
+
+  def accept_move(game, guess, _not_yet_guessed = false) do
+    Map.put(game, :used, MapSet.put(game.used, guess))
   end
 
   def tally(game) do
