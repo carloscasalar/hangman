@@ -20,5 +20,6 @@
     <orderEntry type="library" name="dictionary" level="project" />
     <orderEntry type="library" name="inflex" level="project" />
     <orderEntry type="library" name="ex_doc" level="project" />
+    <orderEntry type="library" name="inflex" level="project" />
   </component>
 </module>
