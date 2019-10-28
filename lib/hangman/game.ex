@@ -7,11 +7,16 @@ defmodule Hangman.Game do
     used: MapSet.new(),
   )
 
-  def init_game() do
+  def init_game(initial_word) do
     %Hangman.Game{
-      letters: Dictionary.random_word
+      letters: initial_word
                |> String.codepoints
     }
+  end
+
+  def init_game() do
+    Dictionary.random_word
+    |> init_game
   end
 
   def make_move(game = %{game_state: sate}, _guess) when sate in [:won, :lost] do
@@ -29,10 +34,25 @@ defmodule Hangman.Game do
 
   def accept_move(game, guess, _not_yet_guessed = false) do
     Map.put(game, :used, MapSet.put(game.used, guess))
+    |> score_guess(Enum.member?(game.letters, guess))
+  end
+
+  def score_guess(game, _good_guess = true) do
+    new_state = MapSet.new(game.letters)
+                |> MapSet.subset?(game.used)
+                |> maybe_won
+
+    Map.put(game, :game_state, new_state)
+  end
+
+  def score_guess(game, _not_good_guess = false) do
+    game
   end
 
   def tally(game) do
     123
   end
 
+  def maybe_won(true), do: :won
+  def maybe_won(_), do: :good_guess
 end
