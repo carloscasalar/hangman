@@ -6,7 +6,7 @@ defmodule Hangman.Game do
     letters: [],
   )
 
-  def new_game() do
+  def init_game() do
     %Hangman.Game{
       letters: Dictionary.random_word
                |> String.codepoints
