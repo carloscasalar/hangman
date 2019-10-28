@@ -2,11 +2,15 @@ defmodule Hangman.Game do
 
   defstruct(
     turns_left: 7,
-    game_sate: :initializing
+    game_sate: :initializing,
+    letters: [],
   )
 
   def new_game() do
-    %Hangman.Game{}
+    %Hangman.Game{
+      letters: Dictionary.random_word
+               |> String.codepoints
+    }
   end
 
 end
