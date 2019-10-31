@@ -28,7 +28,7 @@ defmodule Hangman.Game do
     {game, tally(game)}
   end
 
-  def accept_move(game, guess, _already_guessed = true) do
+  def accept_move(game, _guess, _already_guessed = true) do
     Map.put(game, :game_state, :already_used)
   end
 
@@ -61,7 +61,7 @@ defmodule Hangman.Game do
     }
   end
 
-  def tally(game) do
+  def tally(_game) do
     123
   end
 

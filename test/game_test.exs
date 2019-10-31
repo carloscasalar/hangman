@@ -53,4 +53,24 @@ defmodule GameTest do
     assert game.turns_left == 7
   end
 
+  test "bad guess is recognized" do
+    game = Game.init_game("wok")
+    {game, _tally} = Game.make_move(game, "a")
+    assert game.game_state == :bad_guess
+    assert game.turns_left == 6
+  end
+
+  test "lost game is recognized" do
+    game = Game.init_game("wok")
+    {game, _tally} = Game.make_move(game, "a")
+    {game, _tally} = Game.make_move(game, "b")
+    {game, _tally} = Game.make_move(game, "c")
+    {game, _tally} = Game.make_move(game, "d")
+    {game, _tally} = Game.make_move(game, "e")
+    {game, _tally} = Game.make_move(game, "f")
+    {game, _tally} = Game.make_move(game, "g")
+    assert game.game_state == :lost
+    assert game.turns_left == 0
+  end
+
 end
