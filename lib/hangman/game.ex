@@ -28,6 +28,15 @@ defmodule Hangman.Game do
     {game, tally(game)}
   end
 
+  def tally(game) do
+    %{
+      game_state: game.game_state,
+      turns_left: game.turns_left,
+      letters: game.letters
+               |> reveal_guessed(game.used)
+    }
+  end
+
   def accept_move(game, _guess, _already_guessed = true) do
     Map.put(game, :game_state, :already_used)
   end
@@ -58,15 +67,6 @@ defmodule Hangman.Game do
       game |
       game_state: :bad_guess,
       turns_left: turns_left - 1
-    }
-  end
-
-  def tally(game) do
-    %{
-      game_state: game.game_state,
-      turns_left: game.turns_left,
-      letters: game.letters
-               |> reveal_guessed(game.used)
     }
   end
 
