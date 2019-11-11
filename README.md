@@ -1,6 +1,6 @@
 # Hangman
 
-**TODO: Add description**
+The core of the hangman game. 
 
 ## Installation
 
@@ -10,7 +10,7 @@ by adding `hangman` to your list of dependencies in `mix.exs`:
 ```elixir
 def deps do
   [
-    {:hangman, "~> 0.1.0"}
+    {:hangman, "~> 1.0.0"}
   ]
 end
 ```
