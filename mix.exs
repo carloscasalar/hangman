@@ -27,7 +27,7 @@ defmodule Hangman.MixProject do
       # {:dep_from_git, git: "https://github.com/elixir-lang/my_dep.git", tag: "0.1.0"},
       # { :fetcher,  git: "https://repo.acme.com/fetcher", tag: "1.7" },
       # { :pusher,   github: "pragdave/pusher" },
-      {:dictionary, path: "../dictionary"},
+      {:dictionary, git: "https://github.com/carloscasalar/dictionary.git", tag: "1.0.0"},
     ]
   end
 end

@@ -1,2 +1,3 @@
 %{
+  "dictionary": {:git, "https://github.com/carloscasalar/dictionary.git", "ca15c432004883392751fe4661f1b209c74e4f24", [tag: "1.0.0"]},
 }
