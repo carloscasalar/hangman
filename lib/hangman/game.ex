@@ -33,7 +33,8 @@ defmodule Hangman.Game do
       turns_left: game.turns_left,
       letters:
         game.letters
-        |> reveal_guessed(game.used)
+        |> reveal_guessed(game.used),
+      used_letters: MapSet.to_list(game.used)
     }
   end
 

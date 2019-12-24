@@ -12,13 +12,15 @@ defmodule GameTest do
     assert game.game_state == :initializing
     assert length(game.letters) > 0
 
-    assert Enum.all? game.letters, fn letter -> letter =~ is_letter end
+    assert Enum.all?(game.letters, fn letter -> letter =~ is_letter end)
   end
 
   test "state isn't changed for :won or :lost game" do
     for state <- [:won, :lost] do
-      game = Game.init_game()
-             |> Map.put(:game_state, state)
+      game =
+        Game.init_game()
+        |> Map.put(:game_state, state)
+
       assert ^game = Game.make_move(game, "x")
     end
   end
@@ -72,5 +74,14 @@ defmodule GameTest do
     game = Game.make_move(game, "g")
     assert game.game_state == :lost
     assert game.turns_left == 0
+  end
+
+  test "tally should contain used letters" do
+    game = Game.init_game("wok")
+    game = Game.make_move(game, "a")
+    game = Game.make_move(game, "b")
+    game = Game.make_move(game, "c")
+
+    assert ["a", "b", "c"] === Game.tally(game).used_letters
   end
 end
