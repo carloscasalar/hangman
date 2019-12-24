@@ -1,21 +1,21 @@
 defmodule Hangman.Game do
-
   defstruct(
     turns_left: 7,
     game_state: :initializing,
     letters: [],
-    used: MapSet.new(),
+    used: MapSet.new()
   )
 
   def init_game(initial_word) do
     %Hangman.Game{
-      letters: initial_word
-               |> String.codepoints
+      letters:
+        initial_word
+        |> String.codepoints()
     }
   end
 
   def init_game() do
-    Dictionary.random_word
+    Dictionary.random_word()
     |> init_game
   end
 
@@ -31,8 +31,9 @@ defmodule Hangman.Game do
     %{
       game_state: game.game_state,
       turns_left: game.turns_left,
-      letters: game.letters
-               |> reveal_guessed(game.used)
+      letters:
+        game.letters
+        |> reveal_guessed(game.used)
     }
   end
 
@@ -46,26 +47,27 @@ defmodule Hangman.Game do
   end
 
   defp score_guess(game, _good_guess = true) do
-    new_state = MapSet.new(game.letters)
-                |> MapSet.subset?(game.used)
-                |> maybe_won
+    new_state =
+      MapSet.new(game.letters)
+      |> MapSet.subset?(game.used)
+      |> maybe_won
 
     Map.put(game, :game_state, new_state)
   end
 
   defp score_guess(game = %{turns_left: 1}, _not_good_guess) do
     %{
-      game |
-      game_state: :lost,
-      turns_left: 0
+      game
+      | game_state: :lost,
+        turns_left: 0
     }
   end
 
   defp score_guess(game = %{turns_left: turns_left}, _not_good_guess) do
     %{
-      game |
-      game_state: :bad_guess,
-      turns_left: turns_left - 1
+      game
+      | game_state: :bad_guess,
+        turns_left: turns_left - 1
     }
   end
 
