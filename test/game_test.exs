@@ -80,7 +80,7 @@ defmodule GameTest do
     game = Game.init_game("wok")
     {game, _tally} = Game.make_move(game, "a")
     {game, _tally} = Game.make_move(game, "b")
-    {game, tally} = Game.make_move(game, "c")
+    {_game, tally} = Game.make_move(game, "c")
 
     assert ["a", "b", "c"] === tally.used_letters
   end
