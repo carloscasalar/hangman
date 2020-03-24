@@ -29,7 +29,7 @@ defmodule Hangman.Game do
     |> with_tally()
   end
 
-  defp tally(game) do
+  def tally(game) do
     %{
       game_state: game.game_state,
       turns_left: game.turns_left,
