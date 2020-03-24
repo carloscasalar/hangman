@@ -1,6 +1,7 @@
 defmodule Hangman do
   def new_game() do
-    Supervisor.start_child(Hangman.Supervisor, [])
+    {:ok, game_pid} = Supervisor.start_child(Hangman.Supervisor, [])
+    game_pid
   end
 
   def tally(game_pid) do

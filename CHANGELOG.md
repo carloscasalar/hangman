@@ -1,21 +1,21 @@
 # CHANGELOG
 
-## 2.0.0 2020-03-??
+## 2.0.0 2020-03-24
 * Modify Hangman API:
-  * `new_game`: now it start a new game in the supervisor tree and returns `{:ok, game_pid}``
+  * `new_game`: now it start a new game in the supervisor tree and returns the game pid.
   * `tally` and `make_move`: it accepts now a game_pid as a parameter instead of a game instance.
 * Add a GenServer implementation.
 * Add an application implementation with a dynamic supervisor so 
 we can spawn games with supervisor. Example:
 ```elixir
 iex(1)> Hangman.new_game()
-{:ok, #PID<0.165.0>}
+#PID<0.165.0>
 
-iex(2)> {:ok, game1} = Hangman.new_game()
-{:ok, #PID<0.167.0>}
+iex(2)> game1 = Hangman.new_game()
+#PID<0.167.0>
 
-iex(3)> {:ok, game2} = Hangman.new_game()
-{:ok, #PID<0.169.0>}
+iex(3)> game2 = Hangman.new_game()
+#PID<0.169.0>
         
 iex(4)> Hangman.tally(game1)
 %{
