@@ -4,7 +4,7 @@ defmodule Hangman.MixProject do
   def project do
     [
       app: :hangman,
-      version: "1.1.0",
+      version: "2.0.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
       deps: deps()

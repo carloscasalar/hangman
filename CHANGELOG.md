@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## 2.0.0 2020-03-24
+## 2.0.0 2020-10-24
 * Modify Hangman API:
   * `new_game`: now it start a new game in the supervisor tree and returns the game pid.
   * `tally` and `make_move`: it accepts now a game_pid as a parameter instead of a game instance.
